@@ -8,7 +8,7 @@ export default (theme) => ({
   }),
   contentGap: () => ({
       marginLeft:'10px',
-      color: "blue",
+      color: "black",
       paddingTop:'10px'
   }),
   mainDiv: () => ({

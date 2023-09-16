@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import Login from '../Login'
 import ContactUS from '../ContactUS'
 import Signup from '../Signup/Signup'
+
 const useStyles = makeStyles(styles)
 const Home = () => {
   const classes = useStyles()
@@ -22,7 +23,6 @@ const Home = () => {
   const [isOpen, setIsOpen] = useState(false)
   const handleOpen = () => {
     setIsOpen(true)
-    console.log("Hello World")
   }
   const handleClose = () => {
     setIsOpen(false)
@@ -36,6 +36,7 @@ const Home = () => {
   const handleCloseSignup = () => {
     setIsOpened(false)
   }
+
   return (
     <>
     <div className={classes.mainDiv}>

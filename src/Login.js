@@ -17,7 +17,7 @@ const Login = () => {
       password: "abc",
     },
   ];
-  
+  const [showPassword, setShowPassword] = useState(false);
   useEffect(() => {
     const getAlldata = async () => {
       try {
@@ -32,7 +32,7 @@ const Login = () => {
     getAlldata()
   }, [])
   const handleSubmit = () => {
-    const dataExists = data.some(
+    const defaultDataExists = data.some(
       (e) => e.name === name && e.password === password
     );
     const DataisExists = Data.some((e) => e.Name === name && e.password === password)
@@ -41,7 +41,7 @@ const Login = () => {
       setErrorMessage("Username and Password cannod be empty")
     }
     
-    else if(dataExists || DataisExists){
+    else if(defaultDataExists || DataisExists){
       history.push("/games");
     }
     else
@@ -59,11 +59,19 @@ const Login = () => {
       ></input>
       Password:{" "}
       <input
-        type="password"
+        type={showPassword ? "text" : "password"}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        style={{ marginLeft: "5px", marginTop: "13px" }}
+        style={{ marginLeft: "5px", marginTop: "13px",}}
       ></input>
+      <label style={{fontSize: "13px",}}>
+        <input
+          style={{fontSize: "10px", marginLeft: "79px"}}
+          type="checkbox"
+          onChange={() => setShowPassword(!showPassword)} // Toggle password visibility
+        />{" "}
+        Show Password
+      </label>
       <button
         style={{
           color: "blue",
@@ -79,7 +87,7 @@ const Login = () => {
       >
         Login
       </button>
-      <p>{errorMessage}</p>
+      <p style={{fontSize: "13px"}}>{errorMessage}</p>
     </div>
   );
 };

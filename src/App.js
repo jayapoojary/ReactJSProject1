@@ -11,6 +11,10 @@ import Navigation from "./Navigation";
 import Home from "./Home/Home";
 import RPS from "./GameFolder/RPS";
 import Games from "./GameFolder/Games";
+import Footer from "./Footer/footer";
+import { useSelector } from "react-redux";
+import GeneratePassword from "./PasswordGenerator/GeneratePassword";
+import GenerateFormToExcel from "./GameFolder/GenerateFormToExcel/GenerateFormToExcel";
 function App() {
   const history = useHistory();
 
@@ -20,16 +24,21 @@ function App() {
   };
   
   return (
+    <>
     <div className="App">
       <Navigation />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path="/login" component={Login} />
         <Route path='/contact' component={ContactUS} />
-        <Route path='/rps' component={RPS} />
+        <Route path='/rps/1' component={RPS} />
         <Route path='/games' component={Games} />
+        <Route path='/password' component={GeneratePassword} />
+        <Route path='/form' component={GenerateFormToExcel} />
       </Switch>
     </div>
+    <Footer />
+    </>
   );
 }
 

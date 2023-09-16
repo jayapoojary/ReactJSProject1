@@ -1,7 +1,7 @@
 export default theme => ({
   mainDiv: () => ({
       backgroundColor: 'lightGray',
-      height: '559px'
+      height: '459px'
   }),
   sizing: () => ({
     height: "210px",

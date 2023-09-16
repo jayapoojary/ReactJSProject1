@@ -8,7 +8,7 @@ const Navigation = () => {
   return (
     <div className={classes.mainDiv}>
         <div className={classes.gap}>
-        <Link style={{color:'blue',paddingTop:'10px'}} to='/'>Home</Link>
+        <Link style={{color:'black',paddingTop:'10px'}} to='/'>Home</Link>
         <Link className={classes.contentGap} to='/contact'>Contact US</Link>
         </div>
     </div>

@@ -1,22 +1,45 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Button } from '@mui/material'
+
 const Games = () => {
     const history = useHistory()
-    const [isClicked, setIsClicked] = useState(false)
+    
     const handleChangeGame = () => {
-        setIsClicked(true)
-        if(isClicked)
-        {
-            history.push('/rps')
-        }
+        history.push('/rps/1')
+    }
+    const gotoPasswordGenerator = () => {
+      history.push('/password')
+    }
+    const gotoform = () => {
+      history.push('/form')
     }
   return (
-    <div>
-        <button
+    <div style={{height: '459px'}}>
+        <Button
+        color = 'primary'
+        variant = 'contained'
+        style={{marginTop: '15px'}}
         onClick={handleChangeGame}
         >
             RPS Game
-        </button>
+        </Button>
+        <Button
+          color = 'primary'
+          variant = 'contained'
+          style={{marginTop: '15px', marginLeft: '10px'}}
+          onClick= {gotoPasswordGenerator}
+        >
+          Password Generator
+        </Button>
+        <Button
+          color = 'primary'
+          variant = 'contained'
+          style={{marginTop: '15px', marginLeft: '10px'}}
+          onClick= {gotoform}
+        >
+          Excel Generator
+        </Button>
     </div>
   )
 }
