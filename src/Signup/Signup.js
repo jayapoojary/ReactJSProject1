@@ -15,6 +15,10 @@ const Signup = () => {
       password: "abc",
     },
   ];
+  const REGEX = /^[a-zA-Z]+[0-9]+[a-zA-Z]+$/
+  
+  const isValidPass = REGEX.test(password)
+  console.log("REGEX ",REGEX.test(password))
 const [isDisabled, setIsDisabled] = useState(false)
   const [userData, setUserData] = useState([]);
   const [error, setError] = useState("");
@@ -45,6 +49,10 @@ const [isDisabled, setIsDisabled] = useState(false)
       setError("User Exists");
     } else if (!Name || !password) {
       setError("Name and Password should not be empty");
+    }
+    else if(!REGEX.test(password))
+    {
+      setError("The passwoed should be charactersdigitscharacter EG: abc123p")
     } else {
       axios.post("http://localhost:8087/login/", content);
       setError("User Added");

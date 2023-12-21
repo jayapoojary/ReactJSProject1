@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import Login from '../Login'
 import ContactUS from '../ContactUS'
 import Signup from '../Signup/Signup'
+import EditProfile from '../Authorization/EditProfile'
 
 const useStyles = makeStyles(styles)
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
   const [name, setName] = useState()
   const [password, setPassword] = useState();
   const [isopened, setIsOpened] = useState(false)
+  const [isEdited, setIsEdited] = useState(false)
   const displayMessage = () => {
     setTimeout(() => {
       setMessage("hello")
@@ -37,6 +39,12 @@ const Home = () => {
     setIsOpened(false)
   }
 
+  const handleUserProfile = () => {
+    setIsEdited(true)
+  }
+  const handleColeEditProfile = () => {
+    setIsEdited(false)
+  }
   return (
     <>
     <div className={classes.mainDiv}>
@@ -46,6 +54,9 @@ const Home = () => {
         <button style={{marginLeft:'10px'}} className={classes.buttonStyle}
           onClick={handleSignup}
         >Signup</button>
+        <button style={{marginLeft:'10px',}} className={classes.buttonStyle}
+          onClick={handleUserProfile}
+        >Edit</button>
       </div>
     </div>
     <div>
@@ -71,6 +82,19 @@ const Home = () => {
         </DialogContent>
         <DialogActions>
         <button className={classes.buttonStyle} onClick={handleCloseSignup} color="primary">
+            Cancel
+          </button>
+        </DialogActions>
+      </Dialog>
+      <Dialog aria-labelledby="customized-dialog-title" onClose={handleColeEditProfile} open={isEdited}>
+        <DialogTitle style={{backgroundColor: '#ffdd99'}}>
+          <Typography>Edit Profile</Typography>
+        </DialogTitle>
+        <DialogContent className={classes.dialogStyles}>
+          <EditProfile />
+        </DialogContent>
+        <DialogActions>
+        <button className={classes.buttonStyle} onClick={handleColeEditProfile} color="primary">
             Cancel
           </button>
         </DialogActions>

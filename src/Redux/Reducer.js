@@ -22,6 +22,8 @@ const winningReducer = (state = initialValue, action) => {
                 ...state,
                 score: state.score = 0
             }
+        case WIN_GAME: 
+    
         default: return state
     }
 }

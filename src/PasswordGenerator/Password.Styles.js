@@ -7,7 +7,8 @@ export default theme => ({
         height: '455px',
         marginLeft: '155px',
         marginTop: '35px',
-        boxShadow: '5px 5px 15px black'
+        boxShadow: '5px 5px 15px black',
+        marginTop: '-45px'
     }),
     passwordLength: () => ({
         height: '35px',

@@ -8,7 +8,14 @@ export default theme => ({
     borderRadius: "147.5px",
     marginTop: '25px',
     width: "219px",
-  }),
+    '&:hover': {
+        opacity: 0.5,
+        transform: "rotate('50deg') scale(1.2)"
+    },
+    '$:active' : {
+        opacity: 0.5
+    }
+}),
   buttonStyle: () => ({
       color: 'white',
       backgroundColor: 'blue',
