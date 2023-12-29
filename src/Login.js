@@ -97,13 +97,25 @@ const Login = () => {
         onClick={handleSubmit}
       >
         Login
+
       </button>
       <p style={{ fontSize: "13px" }}>{errorMessage}</p>
+
       <Navigation 
         visibility={true}
         currentUser = {currentUserData}
       />
       
+      {
+        
+        <Navigation 
+          visibility = {true}
+          Image = {currentUsers?.photo}
+        />
+      }
+      {
+        console.log("The URL is ",currentUsers?.photo)
+      }
     </div>
   );
 };
