@@ -6,33 +6,33 @@ import react from "react";
 import { useState } from "react";
 import axios from "axios";
 import Navigation from "./Navigation";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+//import { fetchData } from "./APIRedux/Actions";
+import { fetchData } from "./ActionSelectors/AllActions";
+import Profile from './Home/Profile.jpg'
 const Login = () => {
   const [name, setName] = useState();
   const [password, setPassword] = useState();
   const history = useHistory();
-  const [Data, setData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [dataById, setDataById] = useState([]);
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState();
   const data = [
     {
       name: "abc",
       password: "abc",
     },
   ];
-  const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    const getAlldata = async () => {
-      try {
-        const response = await axios.get("http://localhost:8087/login/");
-        setData(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getAlldata();
-  }, []);
+  const dispatch = useDispatch()
+  const [showPassword, setShowPassword] = useState(false);
+  let currentUserDeltails = {}
+  const Data = useSelector((state) => state.data.data);
+  console.log("Data ",Data)
+  const currentUserData = Data.find(
+    (e) => e.Name === name && e.password === password
+  );
   const handleSubmit = () => {
     const defaultDataExists = data.some(
       (e) => e.name === name && e.password === password
@@ -40,23 +40,26 @@ const Login = () => {
     const DataisExists = Data.some(
       (e) => e.Name === name && e.password === password
     );
+    
     if (name === "" || password === "") {
       setErrorMessage("Username and Password cannod be empty");
     } else if (defaultDataExists || DataisExists) {
-      const currentUserDeltails = Data.length
-        ? Data.find((e) => e.Name === name && e.password === password)
-        : data.find((e) => e.name === name && e.password === password);
-      setCurrentUser(currentUserDeltails);
       history.push("/games");
-      
     } else {
       setErrorMessage("Enter a valid details");
     }
   };
-console.log("The Currebt User is ",currentUser)
-const currentUsers = Data.find((e) => e.Name === name && e.password === password)
-console.log("currentUsers ",currentUsers?.photo)
-const photoURL = currentUsers && Object.keys(currentUsers)?.map((e) => e === 'photo' ? currentUsers[e] : null)
+  console.log("The Current User is ", currentUser);
+  let photoURL = "";
+  {
+    currentUserData && Object.keys(currentUserData)?.map((e) => {
+      if(e === 'photo')
+      {
+        photoURL = currentUserData[e]
+      }
+    })
+  }
+  <img src={Profile} />
   return (
     <div style={{ marginTop: "65px" }}>
       Username:{" "}
@@ -96,15 +99,11 @@ const photoURL = currentUsers && Object.keys(currentUsers)?.map((e) => e === 'ph
         Login
       </button>
       <p style={{ fontSize: "13px" }}>{errorMessage}</p>
-      {
-        <Navigation 
-          visibility = {true}
-          Image = {currentUsers?.photo}
-        />
-      }
-      {
-        console.log("The URL is ",currentUsers?.photo)
-      }
+      <Navigation 
+        visibility={true}
+        currentUser = {currentUserData}
+      />
+      
     </div>
   );
 };

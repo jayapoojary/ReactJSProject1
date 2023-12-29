@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Profile from './Profile.jpg'
 import { makeStyles } from '@mui/styles'
 import styles from './Profile.Style'
@@ -8,7 +8,8 @@ import Login from '../Login'
 import ContactUS from '../ContactUS'
 import Signup from '../Signup/Signup'
 import EditProfile from '../Authorization/EditProfile'
-
+import { fetchData } from '../ActionSelectors/AllActions'
+import { useDispatch } from 'react-redux'
 const useStyles = makeStyles(styles)
 const Home = () => {
   const classes = useStyles()
@@ -17,6 +18,8 @@ const Home = () => {
   const [password, setPassword] = useState();
   const [isopened, setIsOpened] = useState(false)
   const [isEdited, setIsEdited] = useState(false)
+  const dispatch = useDispatch();
+
   const displayMessage = () => {
     setTimeout(() => {
       setMessage("hello")
@@ -39,6 +42,9 @@ const Home = () => {
     setIsOpened(false)
   }
 
+  useEffect(() => {
+    dispatch(fetchData())
+  }, [])
   const handleUserProfile = () => {
     setIsEdited(true)
   }

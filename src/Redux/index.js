@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import winningReducer from './Reducer'
 
 const rootReducer = combineReducers({
-    score: Reducer
+    scores: Reducer
 });
 
 export default rootReducer;
